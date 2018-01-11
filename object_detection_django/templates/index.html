@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Aplikacja webowa{% endblock %}
+
+{% block content %}
+
+<style>
+    input[type=file] { margin: auto; }
+    .choose-file { padding: 20px; }
+</style>
+
+<h5>Wczytaj grafikę na której chcesz rozpoznać obiekt:</h5>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="choose-file">
+        <input type="file" name="uploaded_file" required>
+    </div>
+
+	<br>
+	<button type="submit">Sprawdz grafikę</button>
+	
+</form>
+<br><br><br><br>
+	<font color="blue"><font size=4>Wybrane przez Cb dowolne zdjęcia</font></font>
+
+  <p>Uploaded files:</p>
+  <ul>
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+			<br>
+			<center>
+
+			<img src="{{obj.document.url}}"class="responsive-img" style='max-height:250px;' alt="face">
+			
+			</center>
+		
+      </li>
+    {% endfor %}
+
+  </ul>
+
+
+{% endblock %}

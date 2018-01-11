@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Wykrywanie eagle logo{% endblock %}
+
+{% block content %}
+
+<div>
+{% if success %}
+    <p>Grafika wczytana poprawnie.</p>
+
+    <div style="display: inline-block;">
+        <img class="img-responsive" src="{{ image2 }}">
+    </div>
+{% else %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+</div>
+
+<br>
+
+<div>
+    <a class="btn btn-default" href="/"><h5>Powrót do MENU<h5></a>
+</div>
+
+{% endblock %}
